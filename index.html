@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>VisionAsk · BLIP-2 + Grounding DINO</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <!-- ───────────── Topbar ───────────── -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <span class="logo-mark">◆</span>
+      <span class="logo">VisionAsk</span>
+      <span class="logo-sub">Visual QA Platform</span>
+    </div>
+    <nav class="topbar-nav">
+      <span class="nav-tag">BLIP-2</span>
+      <span class="nav-dot">·</span>
+      <span class="nav-tag">Grounding DINO</span>
+    </nav>
+    <div class="topbar-right">
+      <span id="vram" class="status-label hidden"></span>
+      <span class="status-label">Backend <span id="backend-label">…</span></span>
+      <span id="status-dot" class="status-dot off"></span>
+    </div>
+  </header>
+
+  <div id="offline-banner" class="offline-banner hidden">
+    Backend offline. Run <code>uvicorn backend:app --host 0.0.0.0 --port 8000</code>
+  </div>
+
+  <!-- ───────────── Wizard ───────────── -->
+  <main class="wizard">
+    <!-- Stepper -->
+    <div class="stepper" id="stepper">
+      <button class="step active" data-step="1" type="button">
+        <div class="step-circle"><span class="step-num">1</span><span class="step-check">✓</span></div>
+        <div class="step-info">
+          <div class="step-eyebrow">Step 1</div>
+          <div class="step-title">Compose</div>
+        </div>
+      </button>
+      <div class="step-line"><div class="step-line-fill" data-line="1"></div></div>
+      <button class="step" data-step="2" type="button">
+        <div class="step-circle"><span class="step-num">2</span><span class="step-check">✓</span></div>
+        <div class="step-info">
+          <div class="step-eyebrow">Step 2</div>
+          <div class="step-title">Preview</div>
+        </div>
+      </button>
+      <div class="step-line"><div class="step-line-fill" data-line="2"></div></div>
+      <button class="step" data-step="3" type="button">
+        <div class="step-circle"><span class="step-num">3</span><span class="step-check">✓</span></div>
+        <div class="step-info">
+          <div class="step-eyebrow">Step 3</div>
+          <div class="step-title">Result</div>
+        </div>
+      </button>
+    </div>
+
+    <!-- Panels -->
+    <div class="steps-viewport" id="viewport">
+
+      <!-- ─── Step 1: Compose ─── -->
+      <section class="step-panel active" data-panel="1">
+        <header class="panel-header">
+          <h2 class="panel-title">Compose your question</h2>
+          <p class="panel-sub">Upload an image and tell us what to look for.</p>
+        </header>
+
+        <div class="panel-body">
+          <div class="sec-label">01 · Image</div>
+          <label id="dropzone" class="dropzone" for="file-input">
+            <input id="file-input" type="file" accept="image/png,image/jpeg,image/webp,image/bmp" hidden />
+            <div id="dz-empty" class="dz-empty">
+              <span class="dz-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="17 8 12 3 7 8"></polyline>
+                  <line x1="12" y1="3" x2="12" y2="15"></line>
+                </svg>
+              </span>
+              <span class="dz-text">Drag &amp; drop, or click to upload</span>
+              <span class="dz-sub">JPG · PNG · WEBP · BMP</span>
+            </div>
+            <div id="dz-meta" class="dz-meta hidden">
+              <img id="dz-thumb" class="dz-thumb" alt="" />
+              <div class="dz-meta-text">
+                <span id="dz-name" class="chip"></span>
+                <span id="dz-size" class="chip"></span>
+              </div>
+              <button type="button" id="dz-clear" class="dz-clear" aria-label="Remove image">✕</button>
+            </div>
+          </label>
+
+          <div class="sec-label">02 · Question Type</div>
+          <div class="type-row">
+            <span id="type-pill" class="type-pill">Custom</span>
+            <span class="ground-pill">⚡ Grounding On</span>
+          </div>
+          <div class="select-wrap">
+            <select id="type-select" class="select"></select>
+          </div>
+
+          <div class="sec-label">03 · Question</div>
+          <textarea id="question" class="textarea" rows="4"
+                    placeholder="Type a question, or pick a type above …"></textarea>
+        </div>
+      </section>
+
+      <!-- ─── Step 2: Preview ─── -->
+      <section class="step-panel" data-panel="2">
+        <header class="panel-header">
+          <h2 class="panel-title">Review and confirm</h2>
+          <p class="panel-sub">Double-check your inputs before running the models.</p>
+        </header>
+
+        <div class="panel-body">
+          <div class="preview-grid">
+            <div class="preview-image-wrap">
+              <img id="preview-img" class="viewer-img" alt="preview" />
+            </div>
+            <aside class="summary-card">
+              <div class="summary-row">
+                <div class="summary-label">Image</div>
+                <div id="confirm-image" class="summary-value">—</div>
+              </div>
+              <div class="summary-row">
+                <div class="summary-label">Question Type</div>
+                <div id="confirm-type" class="summary-value">—</div>
+              </div>
+              <div class="summary-row">
+                <div class="summary-label">Question</div>
+                <div id="confirm-question" class="summary-value summary-q">—</div>
+              </div>
+              <div class="summary-row">
+                <div class="summary-label">Grounding DINO</div>
+                <div class="summary-value">
+                  <span class="ground-pill">⚡ Auto-enabled</span>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─── Step 3: Result ─── -->
+      <section class="step-panel" data-panel="3">
+        <header class="panel-header">
+          <h2 class="panel-title">Analysis complete</h2>
+          <p class="panel-sub">Model output, confidence, and detected objects.</p>
+        </header>
+
+        <div class="panel-body">
+          <div class="result-grid">
+            <!-- left: image with tabs -->
+            <div class="result-image">
+              <div class="tabs">
+                <button class="tab active" data-tab="annotated">🎯 Annotated</button>
+                <button class="tab" data-tab="original">🖼 Original</button>
+              </div>
+              <div class="tab-panel active" data-panel-tab="annotated">
+                <img id="annotated-img" class="viewer-img" alt="annotated" />
+                <div id="dino-caption" class="dino-caption hidden"></div>
+              </div>
+              <div class="tab-panel" data-panel-tab="original">
+                <img id="original-img" class="viewer-img" alt="original" />
+              </div>
+            </div>
+
+            <!-- right: answer + boxes -->
+            <div class="result-side">
+              <div class="sec-label">Latest Answer</div>
+              <article id="answer-card" class="answer-card">
+                <div id="answer-text" class="answer-main"></div>
+                <div id="meta-row" class="meta-row"></div>
+                <div class="conf-label">
+                  <span>Token Confidence</span>
+                  <span id="conf-pct"></span>
+                </div>
+                <div class="conf-track">
+                  <div id="conf-fill" class="conf-fill"></div>
+                </div>
+              </article>
+
+              <div id="ground-section" class="ground-section hidden">
+                <div class="ground-header">
+                  <span class="ground-badge">Grounding DINO</span>
+                  <span id="ground-count" class="ground-count"></span>
+                </div>
+                <div id="box-list" class="box-list"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- History -->
+          <div class="history-block">
+            <div class="history-header">
+              <div class="sec-label history-label">History <span id="hist-count" class="hist-count">(0)</span></div>
+              <button id="clear-history" class="btn-ghost hidden">Clear</button>
+            </div>
+            <div id="history-list" class="history-list">
+              <div id="history-empty" class="empty-inline">Q&amp;A history will appear here</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Action bar -->
+    <div class="action-bar" id="action-bar">
+      <button id="btn-back" class="btn-secondary hidden" type="button">← Back</button>
+      <div id="step-status" class="step-status"></div>
+      <button id="btn-next" class="btn-primary" type="button" disabled>
+        <span id="btn-next-label">Continue →</span>
+        <span id="btn-next-spin" class="btn-spin hidden"></span>
+      </button>
+    </div>
+  </main>
+
+  <!-- footer -->
+  <footer class="footer-band">
+    <span>VisionAsk</span> · BLIP-2 · Grounding DINO · Local Inference
+  </footer>
+
+  <!-- toast -->
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
