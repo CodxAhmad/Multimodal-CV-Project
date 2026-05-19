@@ -1,0 +1,85 @@
+image,question,expected_answer,question_type
+img1.jpg,How many vehicles are visible?,2,counting
+img1.jpg,What vehicles are present?,"a taxi, a truck, and a car",object recognition
+img1.jpg,Is there grass in the image?,yes,object presence
+img1.jpg,What color is the taxi?,yellow,color
+img1.jpg,Is there a tree near the road?,yes,scene understanding
+img2.jpg,How many cows are there?,2,counting
+img2.jpg,What animals are visible?,cows,animal recognition
+img2.jpg,What color are the cows?,brown and white,color
+img2.jpg,Are the cows sitting or standing?,sitting,activity recognition
+img2.jpg,Is the area grassy?,yes,scene understanding
+img3.jpg,How many horses are visible?,2,counting
+img3.jpg,What sport is being played?,horse racing,sports recognition
+img3.jpg,What color is the first horse?,white,color
+img3.jpg,What color is the second horse?,black,color
+img3.jpg,Are the players outdoors?,yes,scene understanding
+img3.jpg,How many people are visible?,2,counting
+img4.jpg,How many giraffes are visible?,2,counting
+img4.jpg,What animals are in the image?,giraffes,animal recognition
+img4.jpg,Are the giraffes close to trees?,yes,spatial reasoning
+img4.jpg,Is this a natural outdoor scene?,yes,scene understanding
+img5.jpg,What vehicle is visible?,airplane (air france a380),transportation recognition
+img5.jpg,What airline name is written on the plane?,air france,text recognition
+img5.jpg,What color is the airplane?,white,color
+img5.jpg,Is the airplane flying?,yes,activity recognition
+img6.jpg,What dessert is on the plate?,cake,food recognition
+img6.jpg,Is there a fork on the plate?,yes,object presence
+img6.jpg,How many plates are visible?,1,counting
+img6.jpg,Is food present on the table?,yes,scene understanding
+img7.jpg,How many people are sitting together?,2,counting
+img7.jpg,What is the woman doing?,cutting the pizza,activity recognition
+img7.jpg,Is this inside a restaurant?,yes,scene understanding
+img7.jpg,What food is being cut?,pizza,food recognition
+img7.jpg,Are people sitting at a table?,yes,scene understanding
+img8.jpg,How many people are visible?,2,counting
+img8.jpg,What is the person cutting?,cake,activity recognition
+img8.jpg,Are the people smiling?,yes,human interaction
+img8.jpg,What object is being used to cut the cake?,knife,object recognition
+img9.jpg,How many bikes are visible?,2,counting
+img9.jpg,What color are the bikes?,black,color
+img9.jpg,Which bike brand is visible?,bmw,text recognition
+img9.jpg,Is it close to sunset?,yes,scene understanding
+img9.jpg,Is this a mountainous area?,yes,scene understanding
+img10.jpg,How many people are standing?,4,counting
+img10.jpg,What sport is being played?,baseball,sports recognition
+img10.jpg,How many players are visible?,3,counting
+img10.jpg,Is an umpire visible?,yes,object presence
+img11.jpg,Is the table full of food?,yes,scene understanding
+img11.jpg,Are multiple dishes visible?,yes,object presence
+img11.jpg,What objects are on the table?,food dishes,object recognition
+img12.jpg,What animals are visible?,elephants,animal recognition
+img12.jpg,Are there trees in the background?,yes,scene understanding
+img12.jpg,How many elephants are visible?,5,counting
+img13.jpg,How many people are visible?,1,counting
+img13.jpg,What is the person doing?,skiing,activity recognition
+img13.jpg,Is the environment snowy?,yes,scene understanding
+img13.jpg,Are mountains visible?,yes,scene understanding
+img14.jpg,How many players are visible?,2,counting
+img14.jpg,What sport are they playing?,10nis (Tennis),sports recognition
+img14.jpg,Is the game being played outdoors?,yes,scene understanding
+img15.jpg,What vehicle is visible?,a plane (private jet),transportation recognition
+img15.jpg,Is the airplane on the runway?,yes,scene understanding
+img15.jpg,Are containers visible nearby?,yes,object presence
+img16.jpg,What is flying in the sky?,airplane (a plane),transportation recognition
+img16.jpg,What natural feature is visible?,"island, water",scene understanding
+img16.jpg,Is the island green?,yes,color
+img16.jpg,Is water visible?,yes,scene understanding
+img17.jpg,What animal is visible?,black bear,animal recognition
+img17.jpg,What color is the bear?,black,color
+img17.jpg,Is the bear outdoors?,yes,scene understanding
+img18.jpg,What animal is sitting on the car?,cat,animal recognition
+img18.jpg,Where is the cat sitting?,on the hood of the car,spatial reasoning
+img18.jpg,How many cats are visible?,1,counting
+img19.jpg,What vehicle is the main focus?,motorcycle,transportation recognition
+img19.jpg,Are cars parked nearby?,yes,object presence
+img19.jpg,How many motorcycles are visible?,1,counting
+img20.jpg,What text is written on the sign?,stop (hammmer time),text recognition
+img20.jpg,What type of object is visible?,a stop sign,object recognition
+img21.jpg,What text is visible on the board?,one way,text recognition
+img21.jpg,Are horses mentioned on the sign?,yes,text recognition
+img21.jpg,Is the sign near a building?,yes,scene understanding
+img22.jpg,What text is written on the sign?,bee bus line,text recognition
+img22.jpg,Is the environment snowy?,yes,scene understanding
+img23.jpg,What text is visible on the sign?,west lake street detour,text recognition
+img23.jpg,Is the sign located on a road?,yes,scene understanding

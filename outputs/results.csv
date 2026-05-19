@@ -1,0 +1,85 @@
+image,question,expected_answer,predicted_answer,question_type,correct
+img1.jpg,How many vehicles are visible?,2,1,counting,FALSE
+img1.jpg,What vehicles are present?,"a taxi, a truck, and a car","A taxi, a truck, and a car",object recognition,TRUE
+img1.jpg,Is there grass in the image?,yes,Yes,object presence,TRUE
+img1.jpg,What color is the taxi?,yellow,yellow,color,TRUE
+img1.jpg,Is there a tree near the road?,yes,Yes,scene understanding,TRUE
+img2.jpg,How many cows are there?,2,Two,counting,TRUE
+img2.jpg,What animals are visible?,cows,Cows,animal recognition,TRUE
+img2.jpg,What color are the cows?,brown and white,Brown and white,color,TRUE
+img2.jpg,Are the cows sitting or standing?,sitting,They are sitting,activity recognition,TRUE
+img2.jpg,Is the area grassy?,yes,Yes,scene understanding,TRUE
+img3.jpg,How many horses are visible?,2,Two,counting,TRUE
+img3.jpg,What sport is being played?,horse racing,Jumping,sports recognition,TRUE
+img3.jpg,What color is the first horse?,white,Black and white,color,TRUE
+img3.jpg,What color is the second horse?,black,Black and white,color,TRUE
+img3.jpg,Are the players outdoors?,yes,Yes,scene understanding,TRUE
+img3.jpg,How many people are visible?,2,Two,counting,TRUE
+img4.jpg,How many giraffes are visible?,2,Two,counting,TRUE
+img4.jpg,What animals are in the image?,giraffes,Giraffes,animal recognition,TRUE
+img4.jpg,Are the giraffes close to trees?,yes,Yes,spatial reasoning,TRUE
+img4.jpg,Is this a natural outdoor scene?,yes,Yes,scene understanding,TRUE
+img5.jpg,What vehicle is visible?,airplane (air france a380),airbus a380,transportation recognition,TRUE
+img5.jpg,What airline name is written on the plane?,air france,air france,text recognition,TRUE
+img5.jpg,What color is the airplane?,white,Air France,color,FALSE
+img5.jpg,Is the airplane flying?,yes,"Yes, it is",activity recognition,TRUE
+img6.jpg,What dessert is on the plate?,cake,A piece of cake,food recognition,TRUE
+img6.jpg,Is there a fork on the plate?,yes,Yes,object presence,TRUE
+img6.jpg,How many plates are visible?,1,One,counting,TRUE
+img6.jpg,Is food present on the table?,yes,Yes,scene understanding,TRUE
+img7.jpg,How many people are sitting together?,2,Two,counting,TRUE
+img7.jpg,What is the woman doing?,cutting the pizza,She is cutting the pizza,activity recognition,TRUE
+img7.jpg,Is this inside a restaurant?,yes,Yes,scene understanding,TRUE
+img7.jpg,What food is being cut?,pizza,Pizza,food recognition,TRUE
+img7.jpg,Are people sitting at a table?,yes,Yes,scene understanding,TRUE
+img8.jpg,How many people are visible?,2,Two,counting,TRUE
+img8.jpg,What is the person cutting?,cake,A birthday cake,activity recognition,TRUE
+img8.jpg,Are the people smiling?,yes,Yes,human interaction,TRUE
+img8.jpg,What object is being used to cut the cake?,knife,A knife,object recognition,TRUE
+img9.jpg,How many bikes are visible?,2,Two,counting,TRUE
+img9.jpg,What color are the bikes?,black,They are black,color,TRUE
+img9.jpg,Which bike brand is visible?,bmw,bmw,text recognition,TRUE
+img9.jpg,Is it close to sunset?,yes,Yes,scene understanding,TRUE
+img9.jpg,Is this a mountainous area?,yes,Yes,scene understanding,TRUE
+img10.jpg,How many people are standing?,4,3,counting,FALSE
+img10.jpg,What sport is being played?,baseball,Baseball,sports recognition,TRUE
+img10.jpg,How many players are visible?,3,3,counting,TRUE
+img10.jpg,Is an umpire visible?,yes,Yes,object presence,TRUE
+img11.jpg,Is the table full of food?,yes,Yes,scene understanding,TRUE
+img11.jpg,Are multiple dishes visible?,yes,Yes,object presence,TRUE
+img11.jpg,What objects are on the table?,food dishes,Food!,object recognition,TRUE
+img12.jpg,What animals are visible?,elephants,Elephants,animal recognition,TRUE
+img12.jpg,Are there trees in the background?,yes,Yes,scene understanding,TRUE
+img12.jpg,How many elephants are visible?,5,5,counting,TRUE
+img13.jpg,How many people are visible?,1,One,counting,TRUE
+img13.jpg,What is the person doing?,skiing,Skiing,activity recognition,TRUE
+img13.jpg,Is the environment snowy?,yes,Yes,scene understanding,TRUE
+img13.jpg,Are mountains visible?,yes,Yes,scene understanding,TRUE
+img14.jpg,How many players are visible?,2,Two,counting,TRUE
+img14.jpg,What sport are they playing?,10nis (Tennis),Tennis,sports recognition,TRUE
+img14.jpg,Is the game being played outdoors?,yes,Yes,scene understanding,TRUE
+img15.jpg,What vehicle is visible?,a plane (private jet),A plane,transportation recognition,TRUE
+img15.jpg,Is the airplane on the runway?,yes,Yes,scene understanding,TRUE
+img15.jpg,Are containers visible nearby?,yes,Yes,object presence,TRUE
+img16.jpg,What is flying in the sky?,airplane (a plane),An airplane,transportation recognition,TRUE
+img16.jpg,What natural feature is visible?,"island, water",A plane flying over water,scene understanding,TRUE
+img16.jpg,Is the island green?,yes,"Yes, it is green",color,TRUE
+img16.jpg,Is water visible?,yes,Yes,scene understanding,TRUE
+img17.jpg,What animal is visible?,black bear,A black bear,animal recognition,TRUE
+img17.jpg,What color is the bear?,black,Black,color,TRUE
+img17.jpg,Is the bear outdoors?,yes,Yes,scene understanding,TRUE
+img18.jpg,What animal is sitting on the car?,cat,A cat,animal recognition,TRUE
+img18.jpg,Where is the cat sitting?,on the hood of the car,On the hood of the car,spatial reasoning,TRUE
+img18.jpg,How many cats are visible?,1,None.,counting,FALSE
+img19.jpg,What vehicle is the main focus?,motorcycle,Motorcycle,transportation recognition,TRUE
+img19.jpg,Are cars parked nearby?,yes,Yes,object presence,TRUE
+img19.jpg,How many motorcycles are visible?,1,1,counting,TRUE
+img20.jpg,What text is written on the sign?,stop (hammmer time),Stop Hammer Time,text recognition,TRUE
+img20.jpg,What type of object is visible?,a stop sign,a stop sign,object recognition,TRUE
+img21.jpg,What text is visible on the board?,one way,"""One way""",text recognition,TRUE
+img21.jpg,Are horses mentioned on the sign?,yes,Yes,text recognition,TRUE
+img21.jpg,Is the sign near a building?,yes,Yes,scene understanding,TRUE
+img22.jpg,What text is written on the sign?,bee bus line,"""Bee Bus Line""",text recognition,TRUE
+img22.jpg,Is the environment snowy?,yes,Yes,scene understanding,TRUE
+img23.jpg,What text is visible on the sign?,west lake street detour,West Lake Street Detour,text recognition,TRUE
+img23.jpg,Is the sign located on a road?,yes,Yes,scene understanding,TRUE
